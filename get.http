@@ -1,0 +1,1 @@
+GET http://localhost:8000/api/?userType=admin&email=foo@gmail.com HTTP/1.1

@@ -1,4 +1,4 @@
-POST http://localhost:8000/api/confirm HTTP/1.1
+POST http://localhost:8000/api HTTP/1.1
 content-type: application/json
 
 {

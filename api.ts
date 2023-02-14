@@ -1,11 +1,12 @@
 import express from "npm:express@4.18.2"
 import { CookieDB } from "https://deno.land/x/cookie_driver@0.5.1/mod.ts"
+import { config as dotEnvConfig } from "https://deno.land/x/dotenv@v1.0.1/mod.ts"
 
 const app = express()
 // Initialize instance
 const cookieDB = new CookieDB(
 	"https://cookiedb.com/api/db",
-	"4RWuUXgRTYeEKDx6oufXdb3YdjqWfC15"
+	dotEnvConfig.API_KEY
 )
 
 app.use(express.json())
@@ -35,6 +36,7 @@ app.post("/api/", async (req, res) => {
 			password: data.password,
 			age: data.age,
 		})
+		res.json("Successfull")
 	} else {
 		//cookiedb insert student
 		await cookieDB.insert("students", {
@@ -45,8 +47,10 @@ app.post("/api/", async (req, res) => {
 			password: data.password,
 			grade: data.grade,
 		})
+		res.json("Successfull")
 	}
-	res.json("User succesfully added to database")
+	//catch invalid
+	res.json("Invalid")
 })
 
 app.post("/api/confirm", async (req, res) => {
